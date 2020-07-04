@@ -1,5 +1,5 @@
-title: devlopr
-subtitle: A Jekyll Theme Built for Developers
+title: Software Developer
+subtitle: Raul Moreno
 description: >- # this means to ignore newlines until "baseurl:"
   devlopr-jekyll is a Jekyll Theme Built For Developers
 
@@ -26,7 +26,7 @@ urls:
 
 author_logo: profile.png
 author: John Doe
-author_bio: Hi, my name is John Doe. I built this site using devlopr-jekyll :D
+author_bio: Hi, my name is Raul Moreno. I built this site using devlopr-jekyll :D
 author_email: "johndoe@gmail.com"
 author_location: India
 author_website_url: "http://johndoe.com"
