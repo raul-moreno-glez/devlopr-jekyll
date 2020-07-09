@@ -1,0 +1,55 @@
+---
+layout: default
+---
+
+{% if site.show_author_project_details == true %}
+<div id="author_projects" class="card">
+  <h1 class="card-title">GitHub Projects</h1>
+  <br />
+  <!-- {% for project in site.author_project_details %} {% if project.visibility
+  == true %}
+  <div class="row" id="project-card">
+    <div class="col-md-6">
+      <img
+        src="{{site.url}}{{site.baseurl}}/assets/img/{{project.project_thumbnail}}"
+        class="project-img"
+      />
+    </div>
+    <div class="col-md-4 center">
+      <h4 class="experience-title">{{ project.project_title }}</h4>
+      <h6 class="experience-info">{{ project.project_info}}</h6>
+      <p class="experience-desc">{{ project.project_description }}</p>
+      <p>
+        <a class="project-link" href="{{project.project_url}}"
+          >{{ project.project_url}}</a
+        >
+      </p>
+    </div>
+  </div>
+  <br />
+  {% endif %} {% endfor %} -->
+  {% if site.projects.sort_by == 'stars' %}
+    {% assign sort_order = 'last' %}
+  {% else %}
+    {% assign sort_order = 'pushed_at' %}
+  {% endif %}
+
+  {% if site.projects.exclude.archived and site.projects.exclude.forks %}
+    {% assign filtered_repos = site.github.public_repositories | where:'archived', false | where:'fork', false | sort: sort_order | reverse %}
+  {% elsif site.projects.exclude.archived %}
+    {% assign filtered_repos = site.github.public_repositories | where:'archived', false | sort: sort_order | reverse %}
+  {% elsif site.projects.exclude.forks %}
+    {% assign filtered_repos = site.github.public_repositories | where:'fork', false | sort: sort_order | reverse %}
+  {% else %}
+    {% assign filtered_repos = site.github.public_repositories | sort: sort_order | reverse %}
+  {% endif %}
+
+  {% for repository in filtered_repos %}
+    
+      <div class="col-sm-6 col-md-12 col-lg-6 col-xl-4 mb-3">
+        <p>{{ repository.name }}</p>
+      </div>
+
+  {% endfor %}
+</div>
+{% endif %} 
